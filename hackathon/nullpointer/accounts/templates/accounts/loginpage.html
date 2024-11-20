@@ -1,19 +1,74 @@
-{% extends 'main.html' %}
 
-{% block body%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #lpage {
+            width: 100%;
+            max-width: 350px;
+            padding: 20px;
+            background-color: rgb(177, 207, 219);
+            border: 5px solid black;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+    {% if message %}
+        <h2>{{ message }}</h2>
+    {% endif %}
+    
+    <div id="lpage">
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            
+            <input type="submit" value="Login">
+        </form>
+        <h3>Don't have an account? <a href="{% url 'accounts:register' %}">Register</a></h3>
+    </div>
+    
+</body>
+</html>
 
-{% if message %}
-<h2> {{ message}} </h2>
-{% endif %}
-<form action="" method="post">
-    {% csrf_token %}
-    <label for="username">username</label>
-    <input type="text" id="username" name="username">
-    <br>
-    <br>
-    <label for="password">password</label>
-    <input type="password" id="password" name="password">
-    <input type="submit" value="Login">
-</form>
-<h3>Not have a account ? <a href="{% url 'accounts:register' %}">Register</a></h3>
-{% endblock %}

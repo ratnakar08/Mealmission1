@@ -1,42 +1,142 @@
-{% extends 'main.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-{% block body%}
-<h1>Register page</h1>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-{% if error %}
-<h2>{{ error }} </h2>
-{% endif %}
-<form action="" method="post">
-    {% csrf_token %}
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username">
-    <br>
-    <br>
-    <label for="firstname">First name</label>
-    <input type="text" id="firstname" name="firstname">
-    <br>
-    <br>
-    <label for="lastname">Last name</label>
-    <input type="text" id="lastname" name="lastname">
-    <br>
-    <br>
-    <label for="option">Select: </label>
-    <select name="option" id="option">
-        <option value="Organization">Organization</option>
-        <option value="Volunteer">Volunteer</option>
-        <option value="Recipient">Recipient</option>
-    </select>
-    <br><br>
-    <label for="password1">Password</label>
-    <input type="password" id="password1" name="password1">
-    <br><br>
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
 
-    <label for="password2">Verify Password</label>
-    <input type="password" id="password2" name="password2">
-    <br><br>
-    <label for="email">Email</label> 
-    <input type="email" id='email' name="email">
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
 
-    <input type="submit" value="Register">
-</form>
-{% endblock %}
+        h2 {
+            text-align: center;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Register Page</h1>
+
+        {% if error %}
+        <h2>{{ error }}</h2>
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" name="firstname" required>
+
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" name="lastname" required>
+
+            <label for="option">Select</label>
+            <select name="option" id="option">
+                <option value="Organization">Organization</option>
+                <option value="Volunteer">Volunteer</option>
+                <option value="Recipient">Recipient</option>
+            </select>
+
+            <label for="password1">Password</label>
+            <input type="password" id="password1" name="password1" required>
+
+            <label for="password2">Verify Password</label>
+            <input type="password" id="password2" name="password2" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <input type="submit" value="Register">
+        </form>
+
+        <div class="form-footer">
+            <p>Already have an account? <a href="{% url 'accounts:login' %}">Login here</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
