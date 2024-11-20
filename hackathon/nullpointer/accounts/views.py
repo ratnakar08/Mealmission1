@@ -56,19 +56,35 @@ def register(request):
 
 def loginpage(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
 
-        user = auth.authenticate(username=username,password=password)
+        # Check if fields are empty
+        if not username or not password:
+            return render(request, 'accounts/loginpage.html', {'message': "Username and password are required."})
+
+        user = auth.authenticate(username=username, password=password)
         if user is not None:
-            auth.login(request,user)
-            return redirect('base:home')
+            auth.login(request, user)
+
+            # Get user profile and post information
+            try:
+                user_profile = UserProfile.objects.get(user=user)
+                user_post = user_profile.post
+
+                # Redirect based on user type
+                if user_post == 'Organization':
+                    return redirect('base:org')
+                else:
+                    # Redirect to a default page, you can customize this
+                    return redirect('base:home')
+            except UserProfile.DoesNotExist:
+                return redirect('base:home')
+
         else:
-            message = {'message':"invalid cridentials"}
-            return render(request,'accounts/loginpage.html',message)
-    else:
-        context={}
-        return render(request,'accounts/loginpage.html',context)
+            return render(request, 'accounts/loginpage.html', {'message': "Invalid credentials."})
+    
+    return render(request, 'accounts/loginpage.html')
 
 
 def logoutpage(request):

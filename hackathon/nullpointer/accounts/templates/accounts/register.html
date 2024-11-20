@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
-    <style>
-        /* General reset */
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -13,12 +13,15 @@
         }
 
         body {
+            background-image: url(" {% static 'style\background.jpeg' %} ");
+            background-repeat: no-repeat;
+            background-size: cover; 
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100%;
         }
 
         .container {
@@ -33,7 +36,7 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 30px;
             color: #333;
         }
 

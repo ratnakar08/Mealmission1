@@ -1,12 +1,50 @@
-<nav class="navbar">
-    <ul>
-        <li><h3><a href="{% url 'base:home' %}">Home</a></h3></li>
-        {% if user.is_authenticated %}
-        <li><h3><a href="{% url 'accounts:logout' %}">Logout</a></h3></li>
-        {% else %}
-        <li><h3><a href="{% url 'accounts:login' %}">Login</a></h3></li>
+
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <a href="#">MEAL MISSION</a>
+        </div>
+
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="{% url 'base:home' %}">Home</a></li>
+            <li><a href="#">About</a></li>
+
+            <!-- Dropdown Menu Example -->
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
         {% endif %}
-    </ul>   
-    <br>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // Sticky navbar on scroll
+        window.onscroll = function() {stickyNavbar()};
+        
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function stickyNavbar() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky");
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-active');
+        });
+    </script>
+
+
 </nav>
 <hr>

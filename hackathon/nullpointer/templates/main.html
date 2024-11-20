@@ -9,6 +9,145 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        /* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic body styling */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #333; /* Dark background */
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow */
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Logo styles */
+.navbar .logo a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Navigation links container */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+/* Navigation links styles */
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects for links */
+.nav-links a:hover {
+    background-color: #ffd700; /* Gold background on hover */
+    color: #333; /* Dark text color on hover */
+    transform: scale(1.05); /* Slightly enlarge the link */
+}
+
+/* Active link styling */
+.nav-links a.active {
+    color: #ffd700;
+    border-bottom: 2px solid #ffd700;
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .nav-links a {
+        font-size: 20px;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a:hover {
+        transform: none; /* Disable scaling effect for mobile */
+    }
+
+    /* Mobile menu toggle button */
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        color: #fff;
+        background: none;
+        border: none;
+        padding: 0;
+        margin-left: auto;
+    }
+
+    .nav-links.mobile-active {
+        display: block;
+    }
+
+    .nav-links {
+        display: none; /* Hide links on mobile by default */
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Smooth transitions */
+.navbar {
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    background-color: #222; /* Darken the navbar when sticky */
+    padding: 10px 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow when sticky */
+}
+
+
+    </style>
     {% include 'nav.html'%}
 
     {% block body  %}

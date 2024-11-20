@@ -11,9 +11,10 @@ class UserProfile(models.Model):
     
 
 class food(models.Model):
-    User=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    price = models.IntegerField()
+    quantity=models.IntegerField(default='0')
+    expirdate = models.CharField(max_length=10)
     dia = models.BooleanField(default=False)
     def __str__(self):
         return self.name

@@ -1,4 +1,104 @@
-body{
-    
-    background-color: antiquewhite;
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic page styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #333; /* Dark background */
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+}
+
+/* Logo styles */
+.navbar .logo a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Navigation links container */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+/* Navigation links list item */
+.nav-links li {
+    display: inline;
+}
+
+/* Navigation links styles */
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s, transform 0.3s; /* Added a smooth transform effect */
+}
+
+/* Hover effect for links */
+.nav-links a:hover {
+    color: #ffd700;  /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge the link on hover */
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .nav-links a {
+        font-size: 20px;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a:hover {
+        transform: none; /* Remove scale effect for small screens */
+    }
+}
+
+/* Add a sticky effect when scrolling */
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #222; /* Change background when sticky */
+}
+
+/* Optional: Adding a transition effect when the navbar becomes sticky */
+.navbar.sticky {
+    transition: background-color
 }

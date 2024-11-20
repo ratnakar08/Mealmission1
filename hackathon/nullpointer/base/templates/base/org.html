@@ -1,0 +1,130 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    .food-container {
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        gap: 20px; /* Space between each food card */
+        justify-content: flex-start; /* Align items to the left */
+        margin-top: 20px;
+    }
+
+    .food-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 250px; /* Fixed width for the food cards */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-top: 20px; /* Added margin-top to give space above each card */
+    }
+
+    .food-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .food-card-body {
+        padding: 20px;
+    }
+
+    .food-name {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .food-card-footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #f9f9f9;
+    }
+
+    .food-card-footer a {
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .food-card-footer .btn-warning {
+        background-color: #f39c12;
+    }
+
+    .food-card-footer .btn-danger {
+        background-color: #e74c3c;
+    }
+
+    .food-card-footer a:hover {
+        opacity: 0.8;
+    }
+
+    /* Styling for the Add Food button */
+    .add-food-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #ff6b6b; /* Light Red */
+        color: white;
+        padding: 12px 24px; /* Reduced size for smaller button */
+        border-radius: 8px; /* Rounded corners */
+        font-size: 16px; /* Medium size font */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        transition: all 0.3s ease; /* Smooth transition for hover effect */
+        z-index: 100;
+        border: none;
+        text-decoration: none; /* Removed underline */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .add-food-btn:hover {
+        background: #2ecc71; /* Green on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+    }
+
+    .add-food-btn:active {
+        transform: scale(1); /* Reset scale on click */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow back to normal */
+    }
+
+    .add-food-btn i {
+        font-size: 20px; /* Medium icon size */
+        margin-right: 8px; /* Space between icon and text */
+    }
+</style>
+
+<h2>Food Items</h2>
+
+<!-- Add Food Button Positioned at Bottom Right -->
+<a href="{% url 'base:add' %}" class="add-food-btn">
+    <i class="fa fa-plus"></i> Add Food
+</a>
+
+<div class="food-container">
+    {% if foods %}
+        {% for food in foods %}
+            <div class="food-card">
+                <div class="food-card-body">
+                    <h3 class="food-name">{{ food.name }}</h3>
+                    <p><strong>Quantity:</strong> {{ food.quantity }}</p>
+                    <p><strong>Expiry Date:</strong> {{ food.expirdate }}</p>
+                </div>
+                <div class="food-card-footer">
+                    <a href="#" class="btn btn-warning">Update</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No food items available.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

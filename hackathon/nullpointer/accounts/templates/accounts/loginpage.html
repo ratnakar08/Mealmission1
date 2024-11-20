@@ -8,9 +8,12 @@
     <title>Document</title>
 </head>
 <body>
+
     <style>
         body {
-            background-image: url("{% static 'style/background.jpeg' %}");
+            background-image: url(" {% static 'style\background.jpeg' %} ");
+            background-repeat: no-repeat;
+            background-size: cover; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,25 +22,27 @@
         }
         #lpage {
             width: 100%;
-            max-width: 350px;
+            max-width: 450px;
             padding: 20px;
-            background-color: rgb(177, 207, 219);
-            border: 5px solid black;
+            background-color: rgb(255, 255, 255);
+            border: 3px solid rgb(255, 251, 251);
             border-radius: 10px;
+            box-shadow:  4px 4px 6px rgba(0, 0, 0, 0.1);
         }
         label {
             display: block;
             margin: 10px 0 5px;
         }
         input[type="text"], input[type="password"] {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
         input[type="submit"] {
-            width: 100%;
+            width: 30%;
+            margin-left: 150px;
             padding: 10px;
             background-color: #4CAF50;
             color: white;
@@ -56,7 +61,7 @@
     
     <div id="lpage">
         <form action="" method="post">
-            
+
             {% csrf_token %}
             
             <label for="username">Username</label>
