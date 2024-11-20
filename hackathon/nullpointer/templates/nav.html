@@ -1,5 +1,12 @@
-
-<h3><a href="{% url 'accounts:login' %}">Login</a></h3>
-
-
+<nav class="navbar">
+    <ul>
+        <li><h3><a href="{% url 'base:home' %}">Home</a></h3></li>
+        {% if user.is_authenticated %}
+        <li><h3><a href="{% url 'accounts:logout' %}">Logout</a></h3></li>
+        {% else %}
+        <li><h3><a href="{% url 'accounts:login' %}">Login</a></h3></li>
+        {% endif %}
+    </ul>   
+    <br>
+</nav>
 <hr>
